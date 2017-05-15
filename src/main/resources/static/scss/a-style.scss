@@ -1,0 +1,9 @@
+@import 'html5reset-1.6.1.scss'
+        ,'mixins'
+        ,'dropdown.scss';
+
+$red:#FF3399;
+
+.red {
+    color: $red;
+}

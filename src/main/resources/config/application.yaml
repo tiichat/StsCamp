@@ -1,0 +1,57 @@
+# application.properties もしくは、application.yaml は、
+# どちらか一方があれば読み込まれる。両方あると、両方共読み込まれる。
+# 
+# spring boot の初期状態では、src/main/resources 直下に配置されている。
+# ただし、src/main/resources/config 配下に格納しても、問題なく読み込まれる。
+
+server:
+  port: 8088
+  
+# ファイルアップロードサイズ上限設定
+multipart:
+  max-file-size: 1MB
+  max-request-size: 1MB
+
+spring:
+  datasource:
+    # connection
+    url:              jdbc:h2:file:C:/data/codecamp
+    driverClassName:  org.h2.Driver
+    username:         sa
+    password:
+    tomcat:
+      # connection pool
+      max-active:   30
+      max-idle:     30
+      min-idle:     30
+      initial-size: 30
+      max-wait:     10000
+
+sqldef:
+  query:
+    deptList:
+      base:
+        select * from dept
+    employeeList:
+      base:
+        select  e.*, d.name as deptName 
+        from    employee e left join dept d 
+        where   e.deptId = d.id 
+      deptId:
+        and     e.deptId = :deptId
+      name:
+        and     e.name like :name
+    savePhoto:
+      count:
+        select count(*) from photo where id = :id
+      insert:
+        insert into photo values(:id, :image)
+      update:
+        update photo 
+        set image = :image
+        where id = :id
+    loadPhoto:
+      base:
+        select * from photo where id = :id
+        
+    

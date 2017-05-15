@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+        <link th:href="@{/css/chapter14.css}" rel="stylesheet" type="text/css" />
+	    <title>MyCampテスト</title>
+	</head>
+	<body>
+	    <p th:text="${msg}">please wait...</p>
+	    <form method="post" th:action="@{/mycamp}">
+	        <input type="text" name="name" th:value="${name}" />
+	        <input type="text" name="age" th:value="${age}" />
+	        <input type="submit"/>
+	    </form>
+	    <p><a href="/mycamp/data.csv">CSVのダウンロード</a></p>
+	    <p><a href="/mycamp/chapter14/listEmployee">社員一覧</a></p>
+	    
+	    <p>ファイルアップロード</p>
+	    <form method="post" enctype="multipart/form-data" th:action="@{/mycamp/upload}">
+            <input type="file" name="fileData" />
+            <input type="submit" value="アップロード"/>
+        </form>
+        <img src="/mycamp/photo.jpg">
+	</body>
+</html>
